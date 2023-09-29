@@ -10,7 +10,7 @@ const OuterWrapper = styled.div`
     margin: 30px auto;
     filter: drop-shadow(0 0 15px gold);
 
-    .image {
+    img {
         height: 100%;
         width: 50%;
     }
@@ -18,7 +18,7 @@ const OuterWrapper = styled.div`
     .movieInfo {
         display: flex;
         flex-wrap: wrap;
-        width: 40%;
+        width: 45%;
         margin: 0 0 0 20px;
         padding: 0;
     }
@@ -57,9 +57,7 @@ export const Results = ({movies}) => {
         <>
             {movies.map((movie, index) => 
                 <OuterWrapper key={index}>
-                    <div className="image">
-                        <img src={movie.Poster} />
-                    </div>
+                    <img src={movie.Poster} />
                     <div className="movieInfo">
                         <p className="title">{movie.Title}</p>
                         <p className="year">{movie.Year}</p>
