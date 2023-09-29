@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 
 const OuterWrapper = styled.div`
+    background-color: #eaeaea;
     display: flex;
     width: 600px;
-    height: 400px;
+    height: 450px;
     color: charcoal;
-    box-sizing: border-box;
-    font-size: 16px;
-    border: 1px solid gray;
-    margin: 15px;
+    border: 1px solid charcoal;
+    margin: 30px auto;
+    filter: drop-shadow(0 0 15px gold);
 
-    img {
+    .image {
         height: 100%;
         width: 50%;
-        border-right: 1px solid charcoal;
     }
 
     .movieInfo {
@@ -49,27 +48,30 @@ const OuterWrapper = styled.div`
 
 `
 
-export const Results = ({movie}) => {
-    if (!movie) {
+export const Results = ({movies}) => {
+    if (!movies) {
         return;
     }
+    console.log(movies);
     return ( 
         <>
-            <OuterWrapper>
-                <div className="image"></div>
-                <img src={movie.Poster} />
-                <div className="movieInfo">
-                    <p className="title">{movie.Title}</p>
-                    <p className="year">{movie.Year}</p>
-                    <p className="plot">{movie.Plot}</p>
-                    <ul>
-                        {movie.Ratings.map((rating, index) => 
-                            <li key={index}>{rating.Source}: {rating.Value}</li>
-                        )}
-                    </ul>
-                </div>
-                
-            </OuterWrapper>
+            {movies.map((movie, index) => 
+                <OuterWrapper key={index}>
+                    <div className="image">
+                        <img src={movie.Poster} />
+                    </div>
+                    <div className="movieInfo">
+                        <p className="title">{movie.Title}</p>
+                        <p className="year">{movie.Year}</p>
+                        <p className="plot">{movie.Plot}</p>
+                        <ul>
+                            {movie.Ratings.map((rating, index) => 
+                                <li key={index}>{rating.Source}: {rating.Value}</li>
+                            )}
+                        </ul>
+                    </div>
+                </OuterWrapper>
+            )};
         </>
     )
 }
