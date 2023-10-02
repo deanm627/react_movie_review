@@ -26,13 +26,20 @@ export const Form = () => {
     const [values, setValues] = useState([]);
 
     async function getMovieInfo() {
-        const url = `http://www.omdbapi.com/?t=${movie}&apikey=55fd11b0`;
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);
-        const movieArray = values.slice();
-        movieArray.push(data);
-        setValues(movieArray);
+        try {
+            const url = `http://www.omdbapi.com/?t=${movie}&apikey=55fd11b0`;
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log(data);
+            if (data.Response === "True") {
+                setValues([...values, data]);
+                return;
+            }
+            alert(data.Error);
+        } catch(error) {
+            console.error('ERROR: ', error);
+        }
+        
     }
 
     const handleSubmit = (e) => {

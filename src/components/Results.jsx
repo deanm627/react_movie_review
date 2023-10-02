@@ -1,3 +1,4 @@
+import { UserReview } from './UserReview.jsx';
 import styled from 'styled-components';
 
 const OuterWrapper = styled.div`
@@ -45,14 +46,13 @@ const OuterWrapper = styled.div`
         align-self: flex-end;
     }
 
-
 `
 
 export const Results = ({movies}) => {
     if (!movies) {
         return;
     }
-    console.log(movies);
+
     return ( 
         <>
             {movies.map((movie, index) => 
@@ -66,6 +66,7 @@ export const Results = ({movies}) => {
                             {movie.Ratings.map((rating, index) => 
                                 <li key={index}>{rating.Source}: {rating.Value}</li>
                             )}
+                            <UserReview />
                         </ul>
                     </div>
                 </OuterWrapper>
